@@ -55,8 +55,8 @@ function setupEventListeners() {
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
     });
-    
-    
+
+
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -154,10 +154,18 @@ function addMessage(content, type, sources = null, isWelcome = false) {
     let html = `<div class="message-content">${displayContent}</div>`;
     
     if (sources && sources.length > 0) {
+        const items = sources.map(s => {
+            const title = s.title ?? s;
+            const url = s.url;
+            const inner = url
+                ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>`
+                : `<span>${title}</span>`;
+            return `<li>${inner}</li>`;
+        }).join('');
         html += `
             <details class="sources-collapsible">
                 <summary class="sources-header">Sources</summary>
-                <div class="sources-content">${sources.join(', ')}</div>
+                <ul class="sources-list">${items}</ul>
             </details>
         `;
     }
