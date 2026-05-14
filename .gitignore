@@ -29,3 +29,12 @@ uploads/
 # OS
 .DS_Store
 Thumbs.db
+
+# Claude Code local config
+.claude/
+
+# Playwright MCP debug artifacts
+.playwright-mcp/
+
+# Local screenshots
+*.png
